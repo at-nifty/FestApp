@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>端末選択</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background-color: #222; color: white; padding: 50px; }
+    h1 { margin-bottom: 40px; }
+    button {
+      font-size: 1.5em;
+      margin: 10px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>この端末の役割を選んでください</h1>
+
+  <button onclick="location.href='controller.html'">コントローラー</button>
+
+  <h2>プロジェクター</h2>
+  <button onclick="location.href='display.html?type=mainProjector'">メインプロジェクター</button>
+  <button onclick="location.href='display.html?type=subProjector'">サブプロジェクター</button>
+
+  <h2>モニター</h2>
+  <script>
+    for (let i = 0; i < 8; i++) {
+      document.write(`<button onclick=\"location.href='display.html?type=monitor${i}'\">モニター${i}</button>`);
+    }
+  </script>
+</body>
+</html>

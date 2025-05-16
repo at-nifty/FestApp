@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Camera1</title>
+  <style>
+    body { margin: 0; background: black; }
+    video { width: 100vw; height: 100vh; object-fit: cover; }
+  </style>
+</head>
+<body>
+  <video id="preview" autoplay muted playsinline></video>
+
+  <script>
+    const id = "camera1"; // ← camera2.html 以降はこの行を変更する
+    const channel = new BroadcastChannel("display_channel");
+    const video = document.getElementById("preview");
+    let stream;
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then(s => {
+        stream = s;
+        video.srcObject = stream;
+      })
+      .catch(err => {
+        document.body.innerHTML = "<p style='color:white;'>カメラ取得失敗</p>";
+        console.error(err);
+      });
+
+    // 転送処理の受信
+    const controlChannel = new BroadcastChannel("camera_control");
+
+    controlChannel.onmessage = (e) => {
+      const { sourceCamera, targetDisplay } = e.data;
+      if (sourceCamera !== id || !stream) return;
+
+      const tracks = stream.getVideoTracks();
+      if (tracks.length > 0) {
+        const videoSender = stream; // ここでは仮に直接転送するような意図とする
+        channel.postMessage({
+          target: targetDisplay,
+          command: "camera_stream",
+          stream: stream // ※実際の MediaStream はシリアライズできないためこのままでは不可
+        });
+      }
+    };
+  </script>
+</body>
+</html>

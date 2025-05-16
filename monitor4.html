@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitor4</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    video, img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      background: black;
+    }
+    .lyric-su {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 2em;
+      color: white;
+    }
+    .lyric-sd {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 2em;
+      color: white;
+    }
+    .lyric-f {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3em;
+      color: white;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const id = "monitor4";
+    const container = document.getElementById("container");
+    const channel = new BroadcastChannel("display_channel");
+
+    let currentLyric = { su: "", sd: "", f: "" };
+
+    channel.onmessage = (event) => {
+      const { target, command, content, mime } = event.data;
+      if (target !== id) return;
+
+      // 表示内容をリセット
+      if (command === "clear") {
+        container.innerHTML = "";
+        currentLyric = { su: "", sd: "", f: "" };
+      }
+
+      // テキスト
+      else if (command === "text") {
+        container.innerHTML = `<div class="lyric-f">${content}</div>`;
+      }
+
+      // 動画
+      else if (command === "video") {
+        container.innerHTML = `<video src="${content}" autoplay muted loop playsinline></video>`;
+      }
+
+      // 画像（JPEG/PNG）
+      else if (command === "image") {
+        container.innerHTML = `<img src="${content}" alt="image" />`;
+      }
+
+      // 歌詞行（LyricProjection風）
+      else if (command === "lyric_line") {
+        if (content.startsWith("SU ")) currentLyric.su = `<div class="lyric-su">${content.slice(3)}</div>`;
+        else if (content.startsWith("SD ")) currentLyric.sd = `<div class="lyric-sd">${content.slice(3)}</div>`;
+        else if (content.startsWith("F "))  currentLyric.f  = `<div class="lyric-f">${content.slice(2)}</div>`;
+        else if (content === "Clear") currentLyric = { su: "", sd: "", f: "" };
+        container.innerHTML = currentLyric.su + currentLyric.sd + currentLyric.f;
+      }
+    };
+  </script>
+</body>
+</html>
