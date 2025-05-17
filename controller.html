@@ -1,33 +1,387 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>コントロール画面</title>
-  <link rel="stylesheet" href="style1.css" />
-</head>
-<body>
-  <h1>コントロール画面</h1>
-
-  <div class="section">
-    <h2>プレビュー</h2>
-    <h3>プロジェクター（Main/Sub）</h3>
-    <div class="preview-grid">
-      <iframe id="mainProjectorPreview"></iframe>
-      <iframe id="subProjectorPreview"></iframe>
-    </div>
-    <h3>モニター</h3>
-    <div class="preview-grid">
+<div class="section">
+  <h2>モニター別プレビューとコントロール</h2>
+  <div class="monitor-control-grid">
+    <!-- モニター1 -->
+    <div class="monitor-block">
+      <h3>モニター1</h3>
       <iframe id="monitorPreview1"></iframe>
-      <iframe id="monitorPreview2"></iframe>
-      <iframe id="monitorPreview3"></iframe>
-      <iframe id="monitorPreview4"></iframe>
-      <iframe id="monitorPreview5"></iframe>
-      <iframe id="monitorPreview6"></iframe>
-      <iframe id="monitorPreview7"></iframe>
-      <iframe id="monitorPreview8"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent0" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL0" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile0" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber0">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile0" accept=".txt" />
+        <div>
+          <button id="prevLyric0">← 前へ</button>
+          <button id="nextLyric0">次へ →</button>
+        </div>
+
+        <button id="applyBtn0">適用</button>
+      </div>
     </div>
-    <h3>カメラ映像</h3>
+
+    <!-- モニター2（以下、monitorPreview2 ～） -->
+    <div class="monitor-block">
+      <h3>モニター2</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+    
+<!-- モニター2（以下、monitorPreview2 ～） -->
+    <div class="monitor-block">
+      <h3>モニター2</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+
+    <!-- モニター2（以下、monitorPreview2 ～） -->
+    <div class="monitor-block">
+      <h3>モニター2</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+
+    <!-- モニター3（以下、monitorPreview3 ～） -->
+    <div class="monitor-block">
+      <h3>モニター3</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+
+    <!-- モニター4（以下、monitorPreview4 ～） -->
+    <div class="monitor-block">
+      <h3>モニター4</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+
+    <!-- モニター5（以下、monitorPreview5 ～） -->
+    <div class="monitor-block">
+      <h3>モニター5</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+
+    <!-- モニター6（以下、monitorPreview2 ～） -->
+    <div class="monitor-block">
+      <h3>モニター6</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+
+    <!-- モニター7（以下、monitorPreview2 ～） -->
+    <div class="monitor-block">
+      <h3>モニター7</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+
+    <!-- モニター8（以下、monitorPreview2 ～） -->
+    <div class="monitor-block">
+      <h3>モニター8</h3>
+      <iframe id="monitorPreview2"></iframe>
+      <div class="control-panel">
+        <label>案内テキスト</label>
+        <input type="text" id="textContent1" placeholder="ここにテキストを入力" />
+
+        <label>動画URL</label>
+        <input type="text" id="videoURL1" placeholder="https://example.com/video.mp4" />
+
+        <label>動画ファイル（mp4）</label>
+        <input type="file" id="videoFile1" accept="video/mp4" />
+
+        <label>映すカメラ番号（1〜8）</label>
+        <select id="cameraNumber1">
+          <option value="">--選択--</option>
+          <option value="1">カメラ1</option>
+          <option value="2">カメラ2</option>
+          <option value="3">カメラ3</option>
+          <option value="4">カメラ4</option>
+          <option value="5">カメラ5</option>
+          <option value="6">カメラ6</option>
+          <option value="7">カメラ7</option>
+          <option value="8">カメラ8</option>
+        </select>
+
+        <label>歌詞ファイル（.txt）</label>
+        <input type="file" id="lyricsFile1" accept=".txt" />
+        <div>
+          <button id="prevLyric1">← 前へ</button>
+          <button id="nextLyric1">次へ →</button>
+        </div>
+
+        <button id="applyBtn1">適用</button>
+      </div>
+    </div>
+
+      <h3>カメラ映像</h3>
     <div class="preview-grid">
       <video id="cameraPreview1" autoplay muted playsinline></video>
       <video id="cameraPreview2" autoplay muted playsinline></video>
@@ -39,72 +393,4 @@
       <video id="cameraPreview8" autoplay muted playsinline></video>
     </div>
   </div>
-
-  <div class="section">
-    <h2>表示内容の変更</h2>
-    <div class="control-panel">
-      <label for="target">対象画面</label>
-      <select id="target">
-        <option value="monitor0">モニター1</option>
-        <option value="monitor1">モニター2</option>
-        <option value="monitor2">モニター3</option>
-        <option value="monitor3">モニター4</option>
-        <option value="monitor4">モニター5</option>
-        <option value="monitor5">モニター6</option>
-        <option value="monitor6">モニター7</option>
-        <option value="monitor7">モニター8</option>
-      </select>
-
-      <label for="textContent">案内テキスト</label>
-      <input type="text" id="textContent" placeholder="ここにテキストを入力" />
-
-      <label for="videoURL">動画URL</label>
-      <input type="text" id="videoURL" placeholder="https://example.com/video.mp4" />
-
-      <label for="videoFile">動画ファイル（mp4）</label>
-      <input type="file" id="videoFile" accept="video/mp4" />
-
-      <label for="cameraNumber">映すカメラ番号（1〜8）</label>
-      <select id="cameraNumber">
-        <option value="">--選択--</option>
-        <option value="0">カメラ1</option>
-        <option value="1">カメラ2</option>
-        <option value="2">カメラ3</option>
-        <option value="3">カメラ4</option>
-        <option value="4">カメラ5</option>
-        <option value="5">カメラ6</option>
-        <option value="6">カメラ7</option>
-        <option value="7">カメラ8</option>
-      </select>
-
-      <button id="applyBtn">適用</button>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>歌詞送り機能（LyricProjection）</h2>
-    <div class="control-panel">
-      <label for="lyricsTarget">対象画面</label>
-      <select id="lyricsTarget">
-        <option value="monitor0">モニター1</option>
-        <option value="monitor1">モニター2</option>
-        <option value="monitor2">モニター3</option>
-        <option value="monitor3">モニター4</option>
-        <option value="monitor4">モニター5</option>
-        <option value="monitor5">モニター6</option>
-        <option value="monitor6">モニター7</option>
-        <option value="monitor7">モニター8</option>
-      </select>
-
-      <label for="lyricsFile">歌詞ファイル（.txt）</label>
-      <input type="file" id="lyricsFile" accept=".txt" />
-
-      <button id="prevLyric">← 前へ</button>
-      <button id="nextLyric">次へ →</button>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-  <script src="controller.js"></script>
-</body>
-</html>
+</div>
