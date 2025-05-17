@@ -38,10 +38,11 @@ body {
   
  .monitor-control-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 横3つに並べる */
+  grid-template-columns: repeat(3, 1fr); /* 横に3列 */
   gap: 24px;
   justify-items: center;
   margin-top: 40px;
+  width: 100%;
 }
 
 .monitor-block {
@@ -49,8 +50,8 @@ body {
   border-radius: 10px;
   padding: 20px;
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  max-width: 380px;
+  box-sizing: border-box;
 }
 
 .monitor-block h3 {
@@ -76,5 +77,5 @@ body {
 .monitor-block input[type="file"],
 .monitor-block select {
   width: 90%;
-  max-width: 360px;
+  max-width: 340px;
 }
