@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>コントロール画面</title>
   <link rel="stylesheet" href="style1.css" />
+  <style>
+    .monitor-control-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 横に3つ並べる */
+  gap: 16px;
+}
+
+.monitor-block {
+  border: 1px solid #ccc;
+  padding: 12px;
+  background: #f8f8f8;
+  border-radius: 8px;
+}
+
+.monitor-block iframe {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 8px;
+}
+
+.monitor-block .control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (max-width: 1024px) {
+  .monitor-control-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .monitor-control-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
 </head>
 <body>
   <h1>コントロール画面</h1>
