@@ -1,0 +1,16 @@
+/* style2.css - モニター画面（黒背景・表示のみ）用スタイル */
+body {
+    margin: 0;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+  }
+  
+  img, video, iframe {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  
