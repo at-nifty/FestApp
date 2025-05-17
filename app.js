@@ -40,15 +40,13 @@ App.utils = {
 
   delay: (ms) => new Promise(resolve => setTimeout(resolve, ms)),
 
-  enableFullscreenOnDoubleClick: (element) => {
-    element.addEventListener('dblclick', () => {
-      if (!document.fullscreenElement) {
-        element.requestFullscreen().catch(err => {
-          console.error('全画面化に失敗:', err);
-        });
-      } else {
-        document.exitFullscreen();
-      }
-    });
+  toggleFullScreen: () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
   }
 };
+
+document.addEventListener("dblclick", App.utils.toggleFullScreen);
