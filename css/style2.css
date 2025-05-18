@@ -6,11 +6,25 @@ body {
     overflow: hidden;
   }
   
-  img, video, iframe {
+img, video, iframe {
     width: 100vw;
     height: 100vh;
     object-fit: contain;
     display: block;
     margin: 0 auto;
   }
+
+.full-image, .full-video, .full-camera {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.text-display {
+  font-size: 3vw;
+  text-align: center;
+  padding: 2vh;
+}
+
   
