@@ -103,6 +103,7 @@ function setupMonitor1ControlEvents() {
   // 適用ボタン
   document.getElementById('applyBtn1').addEventListener('click', () => {
     const text = document.getElementById('textContent1').value.trim();
+    console.log('Applyボタン押された。テキスト入力値:', text);
     const videoFileInput = document.getElementById('videoFile1');
     const cameraNumber = document.getElementById('cameraNumber1').value;
     const lyricsFileInput = document.getElementById('lyricsFile1');
