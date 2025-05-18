@@ -3,10 +3,30 @@ const monitorCount = 8;
 function createMonitorButtons() {
   const container = document.getElementById('monitor-buttons');
   for (let i = 1; i <= monitorCount; i++) {
+    const wrapper = document.createElement('div');
+    wrapper.style.marginBottom = '10px';
+
+    // モニター操作ボタン
     const button = document.createElement('button');
     button.textContent = `Monitor ${i}`;
     button.onclick = () => handleMonitorClick(i);
-    container.appendChild(button);
+
+    // 歌詞送りボタン
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = '▶ 次へ';
+    nextBtn.style.marginLeft = '10px';
+    nextBtn.onclick = () => sendLyricCommand(i, 'lyric-next');
+
+    // 歌詞戻しボタン
+    const prevBtn = document.createElement('button');
+    prevBtn.textContent = '◀ 戻る';
+    prevBtn.style.marginLeft = '5px';
+    prevBtn.onclick = () => sendLyricCommand(i, 'lyric-prev');
+
+    wrapper.appendChild(button);
+    wrapper.appendChild(prevBtn);
+    wrapper.appendChild(nextBtn);
+    container.appendChild(wrapper);
   }
 }
 
@@ -65,6 +85,16 @@ function downloadJSONFile(jsonData, filename) {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+// monitorに歌詞送り/戻しの指示を送信
+function sendLyricCommand(monitorNumber, command) {
+  const iframe = document.getElementById(`monitor-frame-${monitorNumber}`);
+  if (iframe && iframe.contentWindow) {
+    iframe.contentWindow.postMessage(command, '*');
+  } else {
+    alert(`Monitor ${monitorNumber} のプレビュー iframe が見つかりません`);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
