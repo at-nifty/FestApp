@@ -1,52 +1,18 @@
-// app.js - 共通モジュール
+export function fetchJSON(url) {
+  return fetch(url + `?t=${Date.now()}`)
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error('JSON読み込み失敗:', url, err);
+      return null;
+    });
+}
 
-const App = {
-  constants: {
-    CHANNEL_NAME: 'display_channel',
-    VIDEO_WIDTH: 640,
-    VIDEO_HEIGHT: 360,
-  },
-  channel: null,
-  utils: {},
-  events: {},
-  state: {},
-
-  init() {
-    this.channel = new BroadcastChannel(this.constants.CHANNEL_NAME);
-    this.channel.onmessage = (event) => {
-      const { type, payload } = event.data;
-      if (App.events[type]) {
-        App.events[type](payload);
-      } else {
-        App.utils.log('未対応のメッセージタイプ: ' + type);
-      }
-    };
-  },
-
-  sendMessage(type, payload) {
-    if (!this.channel) return;
-    this.channel.postMessage({ type, payload });
-  }
-};
-
-// Utils
-App.utils = {
-  log: (msg) => console.log('[App]', msg),
-
-  escapeHTML: (str) =>
-    str.replace(/[&<>'"]/g, tag => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-    }[tag])),
-
-  delay: (ms) => new Promise(resolve => setTimeout(resolve, ms)),
-
-  toggleFullScreen: () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
-  }
-};
-
-document.addEventListener("dblclick", App.utils.toggleFullScreen);
+export function saveJSONToFile(jsonObject, filename) {
+  const blob = new Blob([JSON.stringify(jsonObject, null, 2)], {
+    type: 'application/json',
+  });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+}

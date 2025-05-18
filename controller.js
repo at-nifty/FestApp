@@ -1,27 +1,34 @@
-// controller.js - 操作画面用JS
+import { fetchJSON, saveJSONToFile } from './app.js';
+
+const monitorCount = 8;
+
+function createMonitorButtons() {
+  const container = document.getElementById('monitor-buttons');
+  for (let i = 1; i <= monitorCount; i++) {
+    const button = document.createElement('button');
+    button.textContent = `Monitor ${i}`;
+    button.onclick = () => {
+      const type = prompt('表示タイプを選択 (text, image, video, camera, lyric)');
+      let content = { type };
+
+      if (type === 'text') {
+        content.text = prompt('表示するテキストを入力:');
+      } else if (type === 'image') {
+        content.src = prompt('画像ファイル名を入力 (例: assets/images/sample.jpg):');
+      } else if (type === 'video') {
+        content.src = prompt('動画ファイル名を入力 (例: assets/videos/sample.mp4):');
+      } else if (type === 'camera') {
+        content.cameraIndex = parseInt(prompt('カメラ番号 (1〜8):'));
+      } else if (type === 'lyric') {
+        content.src = prompt('歌詞ファイルのパスを入力 (例: assets/lyrics/song1.txt):');
+    }
+
+      saveJSONToFile(content, `monitor${i}.json`);
+    };
+    container.appendChild(button);
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('sendText').addEventListener('click', () => {
-      const target = document.getElementById('target').value;
-      const text = document.getElementById('text').value;
-      App.sendMessage('text', { target, text });
-    });
-  
-    document.getElementById('sendVideo').addEventListener('click', () => {
-      const target = document.getElementById('target').value;
-      const url = document.getElementById('videoURL').value;
-      App.sendMessage('video', { target, url });
-    });
-  
-    document.getElementById('sendImage').addEventListener('click', () => {
-      const target = document.getElementById('target').value;
-      const url = document.getElementById('imageURL').value;
-      App.sendMessage('image', { target, url });
-    });
-  
-    document.getElementById('clear').addEventListener('click', () => {
-      const target = document.getElementById('target').value;
-      App.sendMessage('clear', { target });
-    });
-  });
-  
+  createMonitorButtons();
+});

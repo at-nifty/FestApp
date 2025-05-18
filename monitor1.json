@@ -1,0 +1,22 @@
+[
+  {
+    "type": "text",
+    "text": "FestApp"
+  },
+  {
+    "type": "image",
+    "src": "assets/images/sample.jpg"
+  },
+  {
+    "type": "video",
+    "src": "assets/videos/sample.mp4"
+  },
+  {
+    "type": "camera",
+    "cameraIndex": 3
+  },
+  {
+    "type": "lyric",
+    "src": "assets/lyrics/song1.txt"
+  }
+]
