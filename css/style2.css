@@ -1,30 +1,70 @@
-/* style2.css - モニター画面（黒背景・表示のみ）用スタイル */
+/* 全画面黒背景 */
 body {
-    margin: 0;
-    background-color: black;
-    color: white;
-    overflow: hidden;
-  }
-  
-img, video, iframe {
-    width: 100vw;
-    height: 100vh;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-  }
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+  overflow: hidden;
+}
 
-.full-image, .full-video, .full-camera {
+/* 表示コンテナ全体 */
+#content {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* テキストや歌詞などの基本表示 */
+#content > * {
+  max-width: 90%;
+  max-height: 90%;
+  text-align: center;
+}
+
+/* 歌詞スタイル */
+
+/* 左上 (SU) */
+.lyric-su {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 2rem;
+  color: white;
+}
+
+/* 右下 (SD) */
+.lyric-sd {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  text-align: right;
+}
+
+/* 中央 (F) */
+.lyric-f {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* 画像・動画をリセット */
+img, video {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+
+/* iframe (camera表示用) の整形 */
+iframe {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  display: block;
+  border: none;
 }
-
-.text-display {
-  font-size: 3vw;
-  text-align: center;
-  padding: 2vh;
-}
-
-  
