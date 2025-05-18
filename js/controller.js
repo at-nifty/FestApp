@@ -97,6 +97,68 @@ function sendLyricCommand(monitorNumber, command) {
   }
 }
 
+// ここからモニター1の操作パネル用イベント登録
+
+function setupMonitor1ControlEvents() {
+  // 適用ボタン
+  document.getElementById('applyBtn0').addEventListener('click', () => {
+    const text = document.getElementById('textContent0').value.trim();
+    const videoFileInput = document.getElementById('videoFile0');
+    const cameraNumber = document.getElementById('cameraNumber0').value;
+    const lyricsFileInput = document.getElementById('lyricsFile0');
+
+    let content = {};
+
+    // 優先順位など自由に調整可能ですが、ここは例として
+
+    if (text) {
+      content = { type: 'text', text };
+      saveFilesForMonitor(1, content);
+      return;
+    }
+
+    if (videoFileInput.files.length > 0) {
+      // ファイル名だけ取得（アップロードはできないため注意）
+      const fileName = videoFileInput.files[0].name;
+      content = { type: 'video', src: `assets/videos/${fileName}` };
+      saveFilesForMonitor(1, content);
+      return;
+    }
+
+    if (cameraNumber) {
+      const camIndex = parseInt(cameraNumber, 10);
+      if (camIndex >= 1 && camIndex <= 8) {
+        content = { type: 'camera', cameraIndex: camIndex };
+        saveFilesForMonitor(1, content);
+        return;
+      } else {
+        alert('無効なカメラ番号です');
+        return;
+      }
+    }
+
+    if (lyricsFileInput.files.length > 0) {
+      const fileName = lyricsFileInput.files[0].name;
+      content = { type: 'lyric', src: `assets/lyrics/${fileName}` };
+      saveFilesForMonitor(1, content);
+      return;
+    }
+
+    alert('表示内容を入力または選択してください');
+  });
+
+  // 歌詞送り
+  document.getElementById('nextLyric0').addEventListener('click', () => {
+    sendLyricCommand(1, 'lyric-next');
+  });
+
+  // 歌詞戻し
+  document.getElementById('prevLyric0').addEventListener('click', () => {
+    sendLyricCommand(1, 'lyric-prev');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   createMonitorButtons();
+  setupMonitor1ControlEvents();
 });
