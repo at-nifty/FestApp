@@ -1,13 +1,22 @@
 const content = document.getElementById('content');
 let currentIndex = 0;
 let items = [];
+const monitorIndex = getMonitorIndex(); // monitor3.html → 3 を返す想定
 
-async function fetchJSON() {
+function getMonitorIndex() {
+  const match = location.pathname.match(/monitor(\d+)\.html/);
+  return match ? parseInt(match[1], 10) : 1;
+}
+
+async function fetchLatestJSON() {
   try {
-    const res = await fetch(`../../data/monitor${monitorIndex}.json?cachebuster=${Date.now()}`);
-    if (!res.ok) throw new Error('Failed to fetch JSON');
-    const data = await res.json();
-    return data;
+    const listRes = await fetch(`../../data/monitor${monitorIndex}_list.json?cb=${Date.now()}`);
+    if (!listRes.ok) throw new Error('Failed to fetch list');
+    const list = await listRes.json();
+
+    const dataRes = await fetch(`../../data/${list.latest}?cb=${Date.now()}`);
+    if (!dataRes.ok) throw new Error('Failed to fetch content');
+    return await dataRes.json();
   } catch (e) {
     console.error(e);
     return null;
@@ -15,10 +24,9 @@ async function fetchJSON() {
 }
 
 async function loadContent() {
-  const data = await fetchJSON();
+  const data = await fetchLatestJSON();
   if (!data) return;
 
-  // 初回もしくは内容が変わったらitemsを更新
   if (JSON.stringify(data) !== JSON.stringify(items)) {
     items = data;
     currentIndex = 0;
@@ -30,13 +38,11 @@ async function loadContent() {
   }
 
   showItem(items[currentIndex]);
-
-  // 次のアイテムへ（ループ）
   currentIndex = (currentIndex + 1) % items.length;
 }
 
 function showItem(item) {
-  content.innerHTML = ''; // クリア
+  content.innerHTML = '';
   switch(item.type) {
     case 'text':
       content.textContent = item.text;
@@ -76,9 +82,7 @@ function showItem(item) {
   }
 }
 
-async function showCamera(cameraIndex) {
-  // cameraX.htmlが各カメラ映像を出している想定
-  // ここではiframeでcameraX.htmlを呼び出す例
+function showCamera(cameraIndex) {
   content.innerHTML = '';
   const iframe = document.createElement('iframe');
   iframe.src = `../../html/camera/camera${cameraIndex}.html`;
