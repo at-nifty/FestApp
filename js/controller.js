@@ -102,10 +102,10 @@ function sendLyricCommand(monitorNumber, command) {
 function setupMonitor1ControlEvents() {
   // 適用ボタン
   document.getElementById('applyBtn0').addEventListener('click', () => {
-    const text = document.getElementById('textContent0').value.trim();
-    const videoFileInput = document.getElementById('videoFile0');
-    const cameraNumber = document.getElementById('cameraNumber0').value;
-    const lyricsFileInput = document.getElementById('lyricsFile0');
+    const text = document.getElementById('textContent1').value.trim();
+    const videoFileInput = document.getElementById('videoFile1');
+    const cameraNumber = document.getElementById('cameraNumber1').value;
+    const lyricsFileInput = document.getElementById('lyricsFile1');
 
     let content = {};
 
