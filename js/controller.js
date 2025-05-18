@@ -101,7 +101,7 @@ function sendLyricCommand(monitorNumber, command) {
 
 function setupMonitor1ControlEvents() {
   // 適用ボタン
-  document.getElementById('applyBtn0').addEventListener('click', () => {
+  document.getElementById('applyBtn1').addEventListener('click', () => {
     const text = document.getElementById('textContent1').value.trim();
     const videoFileInput = document.getElementById('videoFile1');
     const cameraNumber = document.getElementById('cameraNumber1').value;
